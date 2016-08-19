@@ -9,7 +9,7 @@
       "@id": "iiifpal:palette_color",
       "@container": "@set"
     },
-    "colour": {
+    "color": {
       "@id": "iiifpal:color"
     },
     "closest": {

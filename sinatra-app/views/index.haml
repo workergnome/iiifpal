@@ -1,0 +1,84 @@
+%h1 IIIF Palette Service
+
+%section
+  %p
+    This is an example of a 
+    %a{href: "http://iiif.io/api/annex/services/"} IIIF Service
+    that displays color palettes for the 
+    %a{href: "http://iiif.io/api/image/"}  IIIF Image API,
+    along with a demonstration of a viewer for it and a functional transform generator for adding this service to existing 
+    %span.code info.json
+    files.
+
+  %p
+    The demonstration below uses all three of these components.  If you provide it with the Image API ID of an image, it will attempt to display the palette of that image.  If the Image API doesn't support the service yet (and it would be shocking if it did), it will attempt to use the generator to calculate the palette of the image, and if successful it will return a modified copy of the info.json file, including the new service.  Finally, it will display the palette of the image.
+
+%section
+  %h2 Demonstration of the IIIF Palette Service
+  #demo
+    %form#image_id
+      %label  Choose one of these examples:
+      .examples
+        %img.example{src: 'http://scale.ydc2.yale.edu/iiif/4f227f08-7842-46cc-b05a-e3c6a4614cc1/full/,100/0/native.jpg', "data-info" => "http://scale.ydc2.yale.edu/iiif/4f227f08-7842-46cc-b05a-e3c6a4614cc1", title: "Joseph Mallord William Turner, 1775–1851, British, Dort or Dordrecht: The Dort packet-boat from Rotterdam becalmed, 1818, Oil on canvas, Yale Center for British Art, B1977.14.77, Paintings and Sculpture"}
+        
+        %img.example{src: 'http://ids.lib.harvard.edu/ids/iiif/47208078/full/,100/0/native.jpg', "data-info" => "http://ids.lib.harvard.edu/ids/iiif/47208078", title: "Seated Bather, Harvard Art Museums"}    
+
+        %img.example{src: 'https://dlcs.io/iiif-img/wellcome/1/c9eafc55-4508-4cfb-8e3a-86b53655a3f0/full/,100/0/native.jpg', "data-info" => "https://dlcs.io/iiif-img/wellcome/1/c9eafc55-4508-4cfb-8e3a-86b53655a3f0", title: "Orphan girls entering the refectory of a hospital. Oil painting by Frederick Cayley Robinson, 1915.  Wellcome Library no. 672831i." }
+
+        %img.example{src: 'http://iiif.bodleian.ox.ac.uk/iiif/image/af171ad9-b929-4d99-959b-5d02ab54f909/full/,100/0/native.jpg', "data-info" => "http://iiif.bodleian.ox.ac.uk/iiif/image/af171ad9-b929-4d99-959b-5d02ab54f909", title: "[Watercolour Paintings of Burmese Life], Ms. Burm. a. 5, Image 7, Digital Bodleian."}    
+
+      %label{for: "image_id_url"} Or enter a IIIF Image API ID into the text box below:
+      .input_holder
+        %input#image_id_url{type: "text", value: "http://evil-manifests.davidnewbury.com/iiif/images/garden-1"}
+        %input{type: "submit", value: "Generate"}
+
+    #palette
+      %p
+        Does the service exist?
+        %span.result#service_exists ...
+    #seadragon
+
+
+%section
+  %h2 How it Works
+
+  %p
+    In order to define an IIIF Service, there needs to be an 
+    %a{href: "/vocab/iiifpal.ttl"} profile,
+    a 
+    %a{href: "/vocab/context.json"} JSON-LD context,
+    and a 
+    %a{href: "#example"} standardized JSON syntax.
+    Together, these define how the service works and how the data will be structured both as an API and as Linked Open Data.  The service is an abstract data model and doesn't actually implement anything—it just describes the way in which the data will appear.
+
+  %p
+    In order to actually create the data this example provides an generator that will implement the service.  It uses a lightly modified version of
+    %a{href: "http://labs.cooperhewitt.org/2013/giv-do/"} Cooper Hewett's palette code
+    to generate a list of up to five dominant colors, along with their closest CSS3 matches.  
+
+    To use the generator, send POST request to 
+    %span.code http://palette.david.newbury.com?url=&lt;IMAGE_API_ID&gt;
+    \. This performs a functional transformation of the Image API's info.json file, and will return a copy of the info.json file with the service appended. I'm using this functional transformation pattern to allow several generators like this to be chained together as part of a pipeline that augments IIIF APIs with additional metadata. 
+
+  %p 
+    Currently, it uses the IIIF Image API to send a 300px wide image for palette extraction.  Future improvements might include being able to specify how large the image is (smaller is faster but less accurate), as well as being able to specify which fixed palette to use when determining closest matches.
+
+  %p
+    Finally, this example provides an example of a consumer of this service that displays that palette associated with a specific image. A more sophisticated consumer might use this information to reference additional items with the same palette, to adjust the background behind an image to coordinate with the average color of the image, or to help with other automated tasks.
+
+
+%section
+  %h2 Example JSON Syntax
+
+  .code_example#example
+    = glorify @sample_service
+
+%h2 References
+
+%ul
+  %li
+    %a{href: "https://github.com/workergnome/iiifpal"} Source Code on Github (https://github.com/workergnome/iiifpal)
+  %li
+    %a{href: "http://iiif.io/api/annex/services/"} IIIF Service Annex (http://iiif.io/api/annex/services/)
+  %li 
+    %a{href: "https://github.com/cooperhewitt/plumbing-palette-server"} Cooper Hewitt's plumbing-palette-server (https://github.com/cooperhewitt/plumbing-palette-server)

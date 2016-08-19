@@ -4,13 +4,28 @@ require "sinatra/json"
 require "json"
 require 'typhoeus'
 require 'tempfile'
+require "glorify"
+
+require 'haml'
+
+require "sinatra/link_header"
 
 class MyApp < Sinatra::Base
+  register Sinatra::Glorify
 
 
   configure :development do
     register Sinatra::Reloader
     set :show_exceptions, :after_handler
+  end
+
+  get "/" do
+    @sample_service = File.read("#{File.dirname(__FILE__)}/examples/sample_service.md")
+    haml :index, :layout => :layout
+  end
+
+  get '/css/site.css' do
+    sass "css/site".to_sym
   end
 
   get '/vocab/context.json' do
@@ -69,7 +84,7 @@ class MyApp < Sinatra::Base
     service_obj = {
       "@context" => "http://palette.davidnewbury.com/vocab/context.json",
       "profile"  => "http://palette.davidnewbury.com/vocab/iiifpal",
-      "label"    => "Automatically Generated Palette"
+      "label"    => "Palette automatically generated with a IIIF Palette Server"
     }
     service_obj.merge!(palette)
     

@@ -15,6 +15,7 @@ gem 'puma'
 # Markup Helpers
 gem "haml"
 gem "sass"
+gem "glorify"
 
 group :test, :development do
   gem 'guard'

@@ -1,0 +1,148 @@
+@charset "utf-8"
+@import "normalize"
+@import "manni"
+
+body 
+  background: #98b0c3
+  text-align: left
+  margin: 3em 5em
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-size: 1em
+
+
+h1 
+  color: rgba(0,0,0,0.5)
+  font-size: 1.8em
+  font-weight: 400
+  margin: 0
+
+h2 
+  color: rgba(0,0,0,0.5)
+  margin-top: 20px
+  font-size: 1.6em
+  font-weight: 400
+  margin: 0
+  margin-top: 1em
+  margin-bottom: .25em
+  border-bottom: 1px solid rgba(0,0,0,0.5)
+
+h3 
+  margin-top: 20px
+  padding: 0 0 10px
+
+
+p 
+  margin: 0.5em 0
+  font-size: 1.1em
+  font-weight: 300
+  line-height: 1.4
+  a
+    color: black
+    font-weight: 400
+
+
+a 
+  color: rgba(255, 255, 255, 0.8)
+  text-decoration: none
+  transition: color 0.1s linear
+  &:hover 
+    color: white
+    transition: all 0.15s linear
+  
+.code_example 
+  font-size: 80%
+  background-color: rgba(255, 255, 255, 0.2)
+  padding: 10px
+  max-width: 80em
+  margin: 0 2em
+  border-bottom: 2px solid rgba(255,255,255,.2)
+
+section
+  margin-top: 1em
+  margin-bottom: 4em
+  &:after 
+    content: ""
+    display: table
+    clear: both
+
+.code
+  font-family: monospace, monospace
+  font-size: 80%
+  font-weight: bold
+  color: rgba(0,0,0,.5)
+
+label
+  color: rgba(0,0,0,0.6)
+  padding-bottom: .25em
+
+#demo
+  padding: 10px 10px 4em
+  background-color: rgba(255, 255, 255, 0.2)
+  border-bottom: 2px solid rgba(255,255,255,.2)
+  &:after 
+    content: ""
+    display: table
+    clear: both
+
+.examples
+  padding-bottom: 1em
+  margin-bottom: 1em
+  border-bottom: 1px solid rgba(255,255,255,.2)
+
+.example
+  margin: 5px
+  cursor: pointer
+  border: 2px solid rgba(255,255,255,.2)
+
+#image_id
+  width: 100%
+  margin-bottom: 2em
+  .input_holder
+    margin-top: .25em
+    margin-bottom: 1em
+    padding-bottom: 1em
+    border-bottom: 1px solid rgba(255,255,255,.2)
+ 
+  input[type=text]
+    width: 80%
+  input[type=submit]
+    width: 18%
+#seadragon
+  width: 50%
+  margin-left: 10%
+
+#swatches
+  background-color: rgba(255, 255, 255, 0.3)
+  &:after 
+    content: ""
+    display: table
+    clear: both
+
+#download_info_json
+  text-align: center
+  background: rgba(0,0,0,.4)
+  border-radius: 5px
+  padding: 6px 0px
+  margin-top: 1em
+
+#palette
+  width: 24%
+  margin-right: 10%
+  float: right
+  position: relative
+  .swatch
+    float: left
+    width: 40%
+    padding: 2.5%
+    margin: 2.5%
+    text-align: center
+    font-weight: 400
+  .result
+    font-weight: 400
+    padding: 2px 6px
+    background-color: rgba(255, 255, 255, 0.3)
+    margin-left: 5px
+    border-radius: 5px
+    font-size: 80%
+    position: relative
+    top: -1px
