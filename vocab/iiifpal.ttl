@@ -1,0 +1,55 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc11: <http://purl.org/dc/elements/1.1/> .
+@prefix ns0: <http://purl.org/vocab/vann/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix iiifpal: <http://palette.davidnewbury.com/vocab/iiifpal#> .
+@prefix vsr: <http://purl.org/twc/vocab/vsr#> .
+
+<http://palette.davidnewbury.com/vocab/iiifpal#>
+  a owl:Ontology ;
+  owl:versionInfo "0.1, Created on 2016-07-18" ;
+  dc11:creator "David Newbury" ;
+  ns0:preferredNamespacePrefix "iiifpal"^^rdf:PlainLiteral ;
+  ns0:preferredNamespaceUri "http://palette.davidnewbury.com/vocab/iiifpal"^^rdf:PlainLiteral ;
+  rdfs:label "IIIF Palette Service" ;
+  foaf:page "https://github.com/workergnome/iiif_pal"^^xsd:anyURI .
+
+iiifpal:Palette a owl:Class ;
+  rdfs:comment "This represents an palette extracted from the image." .
+
+iiifpal:Color a owl:Class ;
+  rdfs:comment "This represents a single color" ;
+  rdfs:subClassOf vsr:Color .
+
+iiifpal:palette_color a owl:ObjectProperty ;
+  rdfs:comment "a color used in a given palette." ;
+  rdfs:domain iiifpal:Palette ;
+  rdfs:range iiifpal:Color .
+
+iiifpal:uses_palette a owl:DatatypeProperty ;
+  rdfs:comment "The name of the palette used to calculate closest values." ;
+  rdfs:domain iiifpal:Palette .
+
+iiifpal:status a owl:DatatypeProperty ;
+  rdfs:comment "The status of the response." ;
+  rdfs:domain iiifpal:Palette .
+
+iiifpal:color a owl:DatatypeProperty ;
+  rdfs:comment "The red, green, and blue components of an RGB triplet as a CSS string, representing a specific color." ;
+  rdfs:domain iiifpal:Color ;
+  rdfs:subPropertyOf vsr:rgb .
+
+iiifpal:closest a owl:DatatypeProperty ;
+  rdfs:comment "The red, green, and blue components of an RGB triplet as a CSS string, representing a color within a defined color palette." ;
+  rdfs:domain iiifpal:Color ;
+  rdfs:subPropertyOf iiifpal:color .
+
+iiifpal:average a owl:DatatypeProperty ;
+  rdfs:comment "A CSS color string representing the average color of the image." ;
+  rdfs:domain iiifpal:Palette ;
+  rdfs:range iiifpal:Color;
+  rdfs:subPropertyOf iiifpal:color .
+

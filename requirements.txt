@@ -1,0 +1,2 @@
+-r ./plumbing-palette-server/requirements.txt
+-e ./plumbing-palette-server
