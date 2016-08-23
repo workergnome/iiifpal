@@ -16,37 +16,6 @@
 %section
   %h2 Demonstration of the IIIF Palette Service
   #demo
-    %form#image_id
-      %label  Choose one of these examples:
-      .examples
-        .example-wrapper
-          %img.example{src: 'http://scale.ydc2.yale.edu/iiif/4f227f08-7842-46cc-b05a-e3c6a4614cc1/full/,100/0/native.jpg', "data-info" => "http://scale.ydc2.yale.edu/iiif/4f227f08-7842-46cc-b05a-e3c6a4614cc1", title: "Joseph Mallord William Turner, 1775–1851, British, Dort or Dordrecht: The Dort packet-boat from Rotterdam becalmed, 1818, Oil on canvas, Yale Center for British Art, B1977.14.77, Paintings and Sculpture"}
-          .caption
-            Joseph Mallord William Turner, 1775–1851, British, Dort or Dordrecht: The Dort packet-boat from Rotterdam becalmed, 1818, Oil on canvas, Yale Center for British Art, B1977.14.77, Paintings and Sculpture.
-        
-        .example-wrapper
-          %img.example{src: 'http://ids.lib.harvard.edu/ids/iiif/47208078/full/,100/0/native.jpg', "data-info" => "http://ids.lib.harvard.edu/ids/iiif/47208078", title: "Seated Bather, Harvard Art Museums"}    
-          .caption
-            Seated Bather, Harvard Art Museums
-        .example-wrapper
-          %img.example{src: 'https://dlcs.io/iiif-img/wellcome/1/c9eafc55-4508-4cfb-8e3a-86b53655a3f0/full/,100/0/native.jpg', "data-info" => "https://dlcs.io/iiif-img/wellcome/1/c9eafc55-4508-4cfb-8e3a-86b53655a3f0", title: "Orphan girls entering the refectory of a hospital. Oil painting by Frederick Cayley Robinson, 1915.  Wellcome Library no. 672831i." }
-          .caption
-            Orphan girls entering the refectory of a hospital. Oil painting by Frederick Cayley Robinson, 1915.  Wellcome Library no. 672831i.
-        .example-wrapper
-          %img.example{src: 'http://iiif.bodleian.ox.ac.uk/iiif/image/af171ad9-b929-4d99-959b-5d02ab54f909/full/,100/0/native.jpg', "data-info" => "http://iiif.bodleian.ox.ac.uk/iiif/image/af171ad9-b929-4d99-959b-5d02ab54f909", title: "[Watercolour Paintings of Burmese Life], Ms. Burm. a. 5, Image 7, Digital Bodleian."}    
-          .caption
-            [Watercolour Paintings of Burmese Life], Ms. Burm. a. 5, Image 7, Digital Bodleian.
-
-      %label{for: "image_id_url"} Or enter a IIIF Image API ID into the text box below:
-      .input_holder
-        %input#image_id_url{type: "text", value: "http://evil-manifests.davidnewbury.com/iiif/images/garden-1"}
-        %input{type: "submit", value: "Generate"}
-
-    #palette
-      %p
-        Does the service exist?
-        %span.result#service_exists ...
-    #seadragon
 
 
 %section
@@ -92,3 +61,5 @@
     %a{href: "http://iiif.io/api/annex/services/"} IIIF Service Annex (http://iiif.io/api/annex/services/)
   %li 
     %a{href: "https://github.com/cooperhewitt/plumbing-palette-server"} Cooper Hewitt's plumbing-palette-server (https://github.com/cooperhewitt/plumbing-palette-server)
+
+

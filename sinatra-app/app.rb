@@ -7,6 +7,7 @@ require 'tempfile'
 require "glorify"
 
 require 'haml'
+require "tilt/sass"
 
 require "sinatra/link_header"
 
