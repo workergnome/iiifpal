@@ -4,14 +4,16 @@
   %p
     This is an example of a 
     %a{href: "http://iiif.io/api/annex/services/"} IIIF Service
-    that displays color palettes for the 
-    %a{href: "http://iiif.io/api/image/"}  IIIF Image API,
-    along with a demonstration of a viewer for it and a functional transform generator for adding this service to existing 
+    that encodes color palettes into the 
+    %a{href: "http://iiif.io/api/image/"}  IIIF Image API.
+    It also provides a demonstration of a viewer for it, as well as a functional transform generator for adding this service to existing 
     %span.code info.json
     files.
 
   %p
-    The demonstration below uses all three of these components.  If you provide it with the Image API ID of an image, it will attempt to display the palette of that image.  If the Image API doesn't support the service yet (and it would be shocking if it did), it will attempt to use the generator to calculate the palette of the image, and if successful it will return a modified copy of the info.json file, including the new service.  Finally, it will display the palette of the image.
+    The demonstration below uses all three of these components.  If you provide it with the Image API ID of an image, it will attempt to display the palette of that image.  If the Image API doesn't support the service yet (and it would be shocking if it did), it will attempt to use the generator to calculate a palette for the image, and if successful it will return a modified copy of the info.json file that includes the new service.
+  %p
+    Finally, it will display the palette of the image.
 
 %section
   %h2 Demonstration of the IIIF Palette Service
