@@ -6,6 +6,7 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix iiifpal: <http://palette.davidnewbury.com/vocab/iiifpal#> .
+@prefix iiif: <http://iiif.io/api/presentation/3#> .
 @prefix vsr: <http://purl.org/twc/vocab/vsr#> .
 
 <http://palette.davidnewbury.com/vocab/iiifpal#>
@@ -23,6 +24,12 @@ iiifpal:Palette a owl:Class ;
 iiifpal:Color a owl:Class ;
   rdfs:comment "This represents a single color" ;
   rdfs:subClassOf vsr:Color .
+
+iiifpal:computed_palette a owl:ObjectProperty ;
+  rdfs:comment "the computed palette of a IIIF Canvas." ;
+  rdfs:domain iiif:Canvas ;
+  rdfs:range iiifpal:Palette .
+
 
 iiifpal:palette_color a owl:ObjectProperty ;
   rdfs:comment "a color used in a given palette." ;
@@ -52,4 +59,3 @@ iiifpal:average a owl:DatatypeProperty ;
   rdfs:domain iiifpal:Palette ;
   rdfs:range iiifpal:Color;
   rdfs:subPropertyOf iiifpal:color .
-

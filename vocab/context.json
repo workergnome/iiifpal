@@ -1,25 +1,32 @@
-{
+{ 
   "@context": {
-    "vsr": "http://purl.org/twc/vocab/vsr#",
-    "iiifpal": "http://palette.davidnewbury.com/vocab/iiifpal#",
-    "average": {
-      "@id": "iiifpal:average"
-    },
-    "palette": {
-      "@id": "iiifpal:palette_color",
-      "@container": "@set"
-    },
-    "color": {
-      "@id": "iiifpal:color"
-    },
-    "closest": {
-      "@id": "iiifpal:closest"
-    },
-    "reference-closest": {
-      "@id": "iiifpal:uses_palette"
-    },
-    "stat": {
-      "@id": "iiifpal:status"
+    "@version": 1.1,
+    "computedPalette": {
+      "@id": "http://palette.davidnewbury.com/vocab/iiifpal#computedPalette",
+      "@context": {
+        "iiifpal": "http://palette.davidnewbury.com/vocab/iiifpal#",
+        "Palette": "iiifpal:Palette",
+        "average": {
+          "@id": "iiifpal:average"
+        },
+        "palette": {
+          "@id": "iiifpal:palette_color",
+          "@container": "@set"
+        },
+        "color": {
+          "@id": "iiifpal:color"
+        },
+        "closest": {
+          "@id": "iiifpal:closest"
+        },
+        "reference-closest": {
+          "@id": "iiifpal:uses_palette"
+        },
+        "stat": {
+          "@id": "iiifpal:status"
+        }
+      }
     }
   }
 }
+
