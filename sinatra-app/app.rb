@@ -36,6 +36,7 @@ class MyApp < Sinatra::Base
   get '/vocab/iiifpal.?:format?' do
     vocab =  File.read('vocab/iiifpal.ttl')    
     case  params[:format]
+    when nil
     when "ttl"
       content_type "text/turtle"
       vocab

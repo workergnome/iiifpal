@@ -3,20 +3,18 @@
 %section
   %p
     This is an example of a 
-    %a{href: "http://iiif.io/api/annex/services/"} IIIF Service
-    that encodes color palettes into the 
-    %a{href: "http://iiif.io/api/image/"}  IIIF Image API.
-    It also provides a demonstration of a viewer for it, as well as a functional transform generator for adding this service to existing 
-    %span.code info.json
-    files.
+    %a{href: "http://iiif.io/api/annex/services/"} IIIF Extension
+    that encodes color palettes onto a 
+    %a{href: "http://iiif.io/api/presentation/"}  IIIF Canvas resource.
+    It also provides a demonstration of a viewer for it, as well as a functional transform generator for adding this extension onto dereferencable Canvases.
 
   %p
-    The demonstration below uses all three of these components.  If you provide it with the Image API ID of an image, it will attempt to display the palette of that image.  If the Image API doesn't support the service yet (and it would be shocking if it did), it will attempt to use the generator to calculate a palette for the image, and if successful it will return a modified copy of the info.json file that includes the new service.
+    The demonstration below uses all three of these components.  If you provide it with a dereferencable URI for a IIIF Canvas, it will attempt to display the palette of that Canvas.  If the Canvas doesn't include the extension yet (and it would be shocking if it did), it will attempt to use the generator to calculate a palette for the Canvas, and if successful it will return a modified copy of the Canvas json that includes the palette extension.
   %p
-    Finally, it will display the palette of the image.
+    Finally, it will display the palette of the canvas.
 
 %section
-  %h2 Demonstration of the IIIF Palette Service
+  %h2 Demonstration of the IIIF Palette Extension
   #demo
 
 
@@ -24,28 +22,29 @@
   %h2 How it Works
 
   %p
-    In order to define an IIIF Service, there needs to be an 
-    %a{href: "/vocab/iiifpal.ttl"} profile,
-    a 
-    %a{href: "/vocab/context.json"} JSON-LD context,
+    In order to define an IIIF Exension, there needs to be an
+    %a{href: "/vocab/context.json"} JSON-LD context
     and a 
     %a{href: "#example"} standardized JSON syntax.
-    Together, these define how the service works and how the data will be structured both as an API and as Linked Open Data.  The service is an abstract data model and doesn't actually implement anything—it just describes the way in which the data will appear.
+    Together, these define how the extension is defined and how the data will be structured both as an API and as Linked Open Data.  The extension is an abstract data model and doesn't actually implement anything—it just describes the way in which the data will appear. This example also includes an 
+    %a{href: "/vocab/iiifpal.ttl"} OWL ontology
+    which formally defines the various properties and classes that the extension includes.  This is not a requirement for a IIIF extension, but it is a best practice, allowing the extension to be self-documenting.  
 
   %p
-    In order to actually create the data this example provides an generator that will implement the service.  It uses a lightly modified version of
+    To demonstrate this exension, this site also provides a generator that will analyse the Canvas's palette and augment the Canvas's JSON with the extension.  It uses a lightly modified version of
     %a{href: "http://labs.cooperhewitt.org/2013/giv-do/"} Cooper Hewett's palette code
     to generate a list of up to five dominant colors, along with their closest CSS3 matches.  
 
     To use the generator, send POST request to 
-    %span.code http://palette.david.newbury.com?url=&lt;IMAGE_API_ID&gt;
-    \. This performs a functional transformation of the Image API's info.json file, and will return a copy of the info.json file with the service appended. I'm using this functional transformation pattern to allow several generators like this to be chained together as part of a pipeline that augments IIIF APIs with additional metadata. 
+    %span.code http://palette.david.newbury.com?url=&lt;CANVAS_URL&gt;
+    \. This performs a functional transformation of the Canvas's JSON representation, and will return a copy of the canvas JSON with the extension included. This functional transformation pattern allows several generators like this to be chained together as part of a pipeline that augments IIIF APIs with additional extensions or annotations. 
 
   %p 
+    %em TODO: rewrite when you actually know how to do this.
     Currently, it uses the IIIF Image API to send a 300px wide image for palette extraction.  Future improvements might include being able to specify how large the image is (smaller is faster but less accurate), as well as being able to specify which fixed palette to use when determining closest matches.
 
   %p
-    Finally, this example provides an example of a consumer of this service that displays that palette associated with a specific image. A more sophisticated consumer might use this information to reference additional items with the same palette, to adjust the background behind an image to coordinate with the average color of the image, or to help with other automated tasks.
+    Finally, this example provides an example of a consumer of this service that displays that palette associated with a specific Canvas. A more sophisticated consumer might use this information to reference additional items with the same palette, to adjust the background behind a Canvas to coordinate with the average color of the content, or to help with other automated tasks.
 
 
 %section
